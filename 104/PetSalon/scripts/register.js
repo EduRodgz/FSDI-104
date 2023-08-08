@@ -12,29 +12,16 @@ let PetSalon ={
         street: "6th st",
         zip: "77521"
     },
-    pets:[
-        {
-            name:"Scooby",
-            age:70,
-            gender:"Male",
-            service:"Grooming",
-            breed:"Bulldog"
-        },
-        {
-            name:"Scrappy",
-            age: 50,
-            gender: "Male",
-            service: "Nails cut",
-            breed: "Yorkshire"
-        },
-        {
-            name:"Speedy",
-            age: 30,
-            gender: "Male",
-            service: "Wash",
-            breed: "Mutt"
-        }
-    ]
+    pets:[]
+}
+
+//constructor
+function Pet(name,age,gender,breed,service){
+    this.name=name;
+    this.age=age;
+    this.gender=gender;
+    this.breed=breed;
+    this.service=service;
 }
 
 function displayPetName(){
@@ -46,11 +33,32 @@ function displayPetName(){
         </li>`;
     }
 }
+//gets the inputs
+let inputName=document.getElementById("txtName");
+let inputAge=document.getElementById("txtAge");
+let inputGender=document.getElementById("txtGender");
+let inputBreed=document.getElementById("txtBreed");
+let inputService=document.getElementById("txtService");
+function register(){
+    //get values
+    //create the new pet
+    let newPet = new Pet(inputName.value, inputAge.value, inputGender.value, inputBreed.value , inputService.value);
+    //push the new pet
+    PetSalon.pets.push(newPet);
+    console.log(PetSalon.pets);
+    
+}
 
-function init()
-{
-    displayPetName();
+function init(){
+        //create the pet objects
+    let scooby = new Pet("Scooby",80,"Male","Dane","Grooming");
+    let max = new Pet("Max",70,"Male","Pug","Grooming");
+    let ava = new Pet("Ava",21,"Female","Mutt","Grooming");
+    PetSalon.pets.push(scooby,max,ava);
+    console.log(PetSalon.pets);
+
 
 }
+
 // waiting to render the html
 window.onload = init;
