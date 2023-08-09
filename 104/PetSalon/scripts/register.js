@@ -46,7 +46,7 @@ function register(){
     //push the new pet
     PetSalon.pets.push(newPet);
     console.log(PetSalon.pets);
-    
+    reset();
 }
 
 function init(){
@@ -62,3 +62,11 @@ function init(){
 
 // waiting to render the html
 window.onload = init;
+
+function reset(){
+    inputName.value="";
+    inputAge.value="";
+    inputGender.value="";
+    inputBreed.value="";
+    inputService.value="";
+}
