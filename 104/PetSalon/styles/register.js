@@ -14,14 +14,16 @@ let PetSalon ={
     },
     pets:[]
 }
-
+let counter=0;
 //constructor
-function Pet(name,age,gender,breed,service){
+function Pet(name,age,gender,breed,service,payment){
     this.name=name;
     this.age=age;
     this.gender=gender;
     this.breed=breed;
     this.service=service;
+    this.payment=payment;
+    this.id=counter++;
 }
 
 function displayPetName(){
@@ -39,6 +41,8 @@ let inputAge=document.getElementById("txtAge");
 let inputGender=document.getElementById("txtGender");
 let inputBreed=document.getElementById("txtBreed");
 let inputService=document.getElementById("txtService");
+let inputPayment=document.getElementById("txtPayment");
+
 
 function isValid(thePet){
     let validation = true;
@@ -58,12 +62,13 @@ function isValid(thePet){
 function register(){
     //get values
     //create the new pet
-    let newPet = new Pet(inputName.value, inputAge.value, inputGender.value, inputBreed.value , inputService.value);
+    let newPet = new Pet(inputName.value, inputAge.value, inputGender.value, inputBreed.value , inputService.value , inputPayment.value);
     if(isValid(newPet)==true){
     //push the new pet
     PetSalon.pets.push(newPet);
-    displayPetCards();
+    displayTable();
     clearForm();
+    
     }
 }
 function clearForm(){
@@ -72,15 +77,39 @@ function clearForm(){
     inputGender.value="";
     inputBreed.value="";
     inputService.value="";
+    inputPayment.value="";
+}
+
+function search(){
+    let searchString = document.getElementById("txtSearch").value;
+    console.log("Searching..." + searchString);
+    for(let i=0;i<PetSalon.pets.length;i++){
+        let pet = PetSalon.pets[i];
+        if(pet.name.toLowerCase() == searchString.toLowerCase()){
+            console.log("I found it!" + inputName);
+            document.getElementById(pet.id).classList.add("highlight");
+        }
+    }
+    
+}
+function deletePet(petID){
+    for(let i=0;i<PetSalon.pets.length;i++){
+        let pet = PetSalon.pets[i];
+        if(pet.id==petID){
+            PetSalon.pets.splice(i,1);
+        }
+    }
+    document.getElementById(petID).remove();
 }
 
 function init(){
         //create the pet objects
-    let scooby = new Pet("Scooby",80,"Male","Dane","Grooming");
-    let max = new Pet("Max",70,"Male","Pug","Grooming");
-    let ava = new Pet("Ava",21,"Female","Mutt","Grooming");
+    let scooby = new Pet("Scooby",80,"Male","Dane","Grooming","Credit");
+    let max = new Pet("Max",70,"Male","Pug","Grooming","Debit");
+    let ava = new Pet("Ava",21,"Female","Mutt","Grooming","Check");
     PetSalon.pets.push(scooby,max,ava);
-    displayPetCards();
+    displayTable();
+    displayNumberOfPets();
     
 }
 
@@ -93,4 +122,7 @@ function reset(){
     inputGender.value="";
     inputBreed.value="";
     inputService.value="";
+    inputPayment.value="";
 }
+
+

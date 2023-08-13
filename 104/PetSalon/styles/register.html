@@ -43,27 +43,70 @@
                 <input class="form-control" type="text" id="txtBreed">
             </div>
             <div class="mb-3">
+                <label>Payment</label>
+                <select class="form-select" id="txtPayment">
+                    <option value="credit">Credit</option>
+                    <option value="debit">Debit</option>
+                    <option value="check">Check</option>
+                    <option value="cash">Cash</option>
+                </select>
+            </div>
+            <div class="mb-3">
                 <label>Service:</label>
                 <select class="form-select" id="txtService">
                     <option value="vaccines">Vaccines</option>
                     <option value="nails">Nails Trimming</option>
                     <option value="grooming">Grooming</option>
+                    <option value="dental">Dental</option>
                 </select>
-
             </div>
+            
             <button type="button" class="btn btn-info" onclick="register()";>Register</button>
             <button type="button" class="btn btn-info" onclick="reset()";>Reset</button>
+            
 
 
         </div>
 
         <h2>Pets List <sup id="numberPets"></sup></h2>
+        <div>
+            <input type="search" id="txtSearch">
+            <button onclick="search();">Search</button>
+        </div>
+        
         <div id="pets"></div>
+        <table class="table table-bordered">
+            <thead>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Breed</th>
+                <th scope="col">Service</th>
+                <th scope="col">Payment</th>
+                <th></th>
+
+            </thead>
+            
+            
+            <tbody id="petsList">
+            
+            </tbody>
+        </table>
         
     </main>
 
-
+    <ul id="pets"></ul>
     <script src= "./register.js"></script>
     <script src= "./display.js"></script>
 </body>
+<footer class="footer">
+    <nav>
+
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="register.html">Register</a>
+
+    </nav>
+</footer>
 </html>
